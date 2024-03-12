@@ -1,10 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+  <PropertyGroup Label="build settings">
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <IsTool>true</IsTool>
   </PropertyGroup>
+
+  <PropertyGroup Label="packaging settings">
+    <!-- required for packing .netconfig -->
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup Label="version metadata">
+    <Version>0.0.0</Version>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <FileVersion>0.0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Label="project metadata">
+    <Title>GCPRefreshUpmToken</Title>
+    <Description>A simple C# tool to refresh Unity's `.upmconfig.toml` with the current Google Cloud Platform token.</Description>
+    <PackageTags>npm;upm;unity</PackageTags>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageIconUrl>https://raw.github.com/kagekirin/NuGettier/main/GCPRefreshUpmToken/Icon.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Label="tool metadata">
+    <ToolCommandName>GCPRefreshUpmToken</ToolCommandName>
+  </PropertyGroup>
+
+  <ItemGroup Label="packaged files">
+    <None Include="$(MSBuildThisFileDirectory)Icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>

@@ -1,0 +1,11 @@
+<Project>
+
+  <ItemGroup Label="ThisAssembly.Project">
+    <ProjectProperty Include="RepositoryBranch" />
+    <ProjectProperty Include="RepositorySha" />
+    <ProjectProperty Include="RepositoryCommit" />
+    <ProjectProperty Include="RepositoryRoot" />
+    <ProjectProperty Include="RepositoryUrl" />
+  </ItemGroup>
+
+</Project>
