@@ -19,4 +19,12 @@
     <FileVersion>0.0.0.0</FileVersion>
   </PropertyGroup>
 
+  <PropertyGroup Label="project metadata">
+    <Title>GCPRefreshUpmToken</Title>
+    <Description>A simple C# tool to refresh Unity's `.upmconfig.toml` with the current Google Cloud Platform token.</Description>
+    <PackageTags>npm;upm;unity</PackageTags>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageIconUrl>https://raw.github.com/kagekirin/NuGettier/main/GCPRefreshUpmToken/Icon.png</PackageIconUrl>
+  </PropertyGroup>
+
 </Project>
