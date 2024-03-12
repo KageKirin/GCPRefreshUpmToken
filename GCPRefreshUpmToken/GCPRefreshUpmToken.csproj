@@ -8,4 +8,9 @@
     <IsTool>true</IsTool>
   </PropertyGroup>
 
+  <PropertyGroup Label="packaging settings">
+    <!-- required for packing .netconfig -->
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
 </Project>
