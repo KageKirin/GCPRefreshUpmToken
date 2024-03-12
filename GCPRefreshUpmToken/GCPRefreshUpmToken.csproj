@@ -27,4 +27,8 @@
     <PackageIconUrl>https://raw.github.com/kagekirin/NuGettier/main/GCPRefreshUpmToken/Icon.png</PackageIconUrl>
   </PropertyGroup>
 
+  <PropertyGroup Label="tool metadata">
+    <ToolCommandName>GCPRefreshUpmToken</ToolCommandName>
+  </PropertyGroup>
+
 </Project>
