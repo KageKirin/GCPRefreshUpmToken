@@ -1,0 +1,27 @@
+name: jobactions/update-dependencies
+outputs:
+  branch:
+    description: Name of the branch created for the PR to merge the changes
+    value:  ${{ steps.create-branch.outputs.branch }}
+runs:
+  using: composite
+  steps:
+  - uses: kagekirin/gha-utils/.github/actions/install-prerequisites@main
+  - uses: kagekirin/gha-utils/.github/actions/install-version-tools@main
+  - id: create-branch
+    shell: bash
+    run: |-
+      branch="build/update-dependencies-${{ github.run_id }}"
+      git checkout -b ${branch}
+      echo "branch='${branch}'" >> $GITHUB_OUTPUT
+  - id: update-dependencies
+    shell: bash
+    run: |-
+      for a in $(fdfind "csproj$"); do
+        for p in $(xq -x "//ItemGroup/PackageReference/@Include" ${a}); do
+          dotnet add ${a} package ${p} --prerelease
+          newVersion=$(xq -x "//ItemGroup/PackageReference[@Include='${p}']/@Version" ${a})
+          git add ${a}
+          git commit -m "build (${a}): update dependency ${p} to ${newVersion}" || echo "Nothing to commit for ${a} referencing ${p}"
+        done
+      done

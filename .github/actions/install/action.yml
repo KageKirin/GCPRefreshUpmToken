@@ -1,0 +1,20 @@
+name: Install GCPRefreshUpmToken
+runs:
+  using: composite
+  steps:
+  - name: Display license
+    shell: bash
+    run: |-
+      echo "By running this installation script"
+      echo "you automatically agree to the license terms of this Software Product"
+      echo ""
+      curl -s https://raw.githubusercontent.com/KageKirin/GCPRefreshUpmToken/main/LICENSE
+  - name: Install
+    shell: bash
+    run: |-
+      dotnet tool install GCPRefreshUpmToken -g --prerelease
+  - name: Verify installation
+    shell: bash
+    run: |-
+      which GCPRefreshUpmToken
+      GCPRefreshUpmToken --version
