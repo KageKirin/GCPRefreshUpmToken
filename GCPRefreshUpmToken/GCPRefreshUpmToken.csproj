@@ -31,4 +31,8 @@
     <ToolCommandName>GCPRefreshUpmToken</ToolCommandName>
   </PropertyGroup>
 
+  <ItemGroup Label="packaged files">
+    <None Include="$(MSBuildThisFileDirectory)Icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
 </Project>
