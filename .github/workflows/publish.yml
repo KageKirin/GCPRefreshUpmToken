@@ -55,4 +55,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: nuget
     steps:
-    - uses: kagekirin/nugettier/.github/actions/install@main
+    - uses: kagekirin/gcprefreshupmtoken/.github/actions/install@main
