@@ -89,4 +89,4 @@ jobs:
     - uses: ./.github/actions/install
     - id: display-help
       shell: pwsh
-      run: dotnet nugettier --help
+      run: GCPRefreshUpmToken --help
