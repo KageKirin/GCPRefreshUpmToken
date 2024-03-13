@@ -6,6 +6,8 @@ using System.CommandLine.Parsing;
 
 namespace GCPRefreshUpmToken;
 
+#nullable enable
+
 public class Program
 {
     public static async Task<int> Main(string[] args)
