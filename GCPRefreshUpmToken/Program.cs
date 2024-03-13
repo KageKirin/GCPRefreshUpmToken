@@ -3,6 +3,11 @@ using System.CommandLine;
 using System.CommandLine.IO;
 using System.CommandLine.NamingConventionBinder;
 using System.CommandLine.Parsing;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using Tomlyn;
+using Tomlyn.Model;
 
 namespace GCPRefreshUpmToken;
 
@@ -44,6 +49,35 @@ public class Program
 
         if (string.IsNullOrEmpty(token))
             return -1;
+
+        var model = config.Exists
+            ? Toml.ToModel(await File.ReadAllTextAsync(config.FullName, cancellationToken))
+            : new TomlTable();
+        console.WriteLine($"before: {Toml.FromModel(model)}");
+
+
+
+        /// basically doing the following assignment: `model["npmAuth"][registry]["token"] = token`
+        if (!model.ContainsKey("npmAuth"))
+            model.Add("npmAuth", new TomlTable());
+        var npmAuthTable = (TomlTable)model["npmAuth"];
+
+        if (!npmAuthTable.ContainsKey(registry.ToString()))
+            npmAuthTable.Add(registry.ToString(), new TomlTable());
+        var registryTable = (TomlTable)npmAuthTable[registry.ToString()];
+
+        if (registryTable.ContainsKey("token"))
+            registryTable["token"] = token;
+        else
+            registryTable.Add("token", token);
+
+        console.WriteLine($"after: {Toml.FromModel(model)}");
+        await File.WriteAllTextAsync(
+            config.FullName,
+            Toml.FromModel(model),
+            Encoding.Default,
+            cancellationToken
+        );
 
         return 0;
     }
