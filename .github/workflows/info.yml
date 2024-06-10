@@ -1,0 +1,21 @@
+name: info (event)
+
+on:
+  push:
+  pull_request:
+  release:
+  registry_package:
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Show infos about GitHub
+      uses: kagekirin/gha-py-toolbox/actions/util/display-json-object@main
+      with:
+        object: ${{ toJSON(github) }}
+
+    - name: Show infos about event
+      uses: kagekirin/gha-py-toolbox/actions/util/display-json-object@main
+      with:
+        object: ${{ toJSON(github.event) }}
